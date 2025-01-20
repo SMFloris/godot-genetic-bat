@@ -1,0 +1,310 @@
+[gd_scene load_steps=29 format=3 uid="uid://boi8vtpc261xm"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_2kje6"]
+[ext_resource type="Texture2D" uid="uid://b0rfmfbt76fch" path="res://resources/imgs/background/1.png" id="1_j4hqf"]
+[ext_resource type="Texture2D" uid="uid://crcqldvix84km" path="res://resources/imgs/background/2.png" id="2_1fu7a"]
+[ext_resource type="Texture2D" uid="uid://cfm7xq8eblbom" path="res://resources/imgs/background/3fx.png" id="3_htm8k"]
+[ext_resource type="Texture2D" uid="uid://dqv63b38dp8hd" path="res://resources/imgs/background/4.png" id="4_cffai"]
+[ext_resource type="Texture2D" uid="uid://cobbscxjupybg" path="res://resources/imgs/background/5.png" id="5_a2ydl"]
+[ext_resource type="Texture2D" uid="uid://dqoie0kow8c2b" path="res://resources/imgs/background/6fx.png" id="6_hbtab"]
+[ext_resource type="Texture2D" uid="uid://cl0i65qjvsyn2" path="res://resources/imgs/background/7.png" id="7_0g5vq"]
+[ext_resource type="Texture2D" uid="uid://cpberigg01w3l" path="res://resources/imgs/background/8fx.png" id="8_rf6l2"]
+[ext_resource type="Texture2D" uid="uid://r1ha0ttgnpj7" path="res://resources/imgs/background/9.png" id="9_xwr85"]
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="10_k6rxp"]
+[ext_resource type="Texture2D" uid="uid://ca4g20x8pebs4" path="res://resources/imgs/bat/bat.png" id="10_syknw"]
+[ext_resource type="Script" path="res://AnimationPlayer.gd" id="11_0r7g2"]
+[ext_resource type="AudioStream" uid="uid://do62fofyioa6a" path="res://resources/snds/flap.wav" id="12_eyodn"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="14_tm5u4"]
+[ext_resource type="Script" path="res://Obstacle.gd" id="15_gi31p"]
+[ext_resource type="Texture2D" uid="uid://rjphqna03dv0" path="res://resources/imgs/turture/turture.png" id="15_hlseq"]
+[ext_resource type="Script" path="res://Area2D.gd" id="17_2hkou"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ab8pv"]
+
+[sub_resource type="Animation" id="Animation_pkjj7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6iiip"]
+resource_name = "bat_fly"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ouxl1"]
+_data = {
+"RESET": SubResource("Animation_pkjj7"),
+"bat_fly": SubResource("Animation_6iiip")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_moc3h"]
+font_size = 30
+font_color = Color(0.151276, 0.151276, 0.151276, 1)
+shadow_size = 10
+shadow_color = Color(0.00655855, 0.00546306, 0.0046053, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uremc"]
+font_size = 27
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rw5ol"]
+size = Vector2(31, 672.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j0sx6"]
+size = Vector2(33, 715)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_75bcf"]
+a = Vector2(8, 785)
+b = Vector2(11, -698)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_61xep"]
+a = Vector2(-1357, 514)
+b = Vector2(99999, 487)
+
+[node name="Scene" type="Node2D"]
+position = Vector2(959, 538)
+script = ExtResource("1_2kje6")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2(959, 538)
+transform = Transform2D(1, 0, 0, 1, 959, 538)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1900, 0)
+
+[node name="1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("1_j4hqf")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1900, 0)
+
+[node name="1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("2_1fu7a")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1900, 0)
+
+[node name="1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("3_htm8k")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1900, 0)
+
+[node name="1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("4_cffai")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1900, 0)
+
+[node name="1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("5_a2ydl")
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1900, 0)
+
+[node name="1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+texture = ExtResource("6_hbtab")
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1900, 0)
+
+[node name="1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
+texture = ExtResource("7_0g5vq")
+
+[node name="ParallaxLayer8" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+motion_mirroring = Vector2(1900, 0)
+
+[node name="1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer8"]
+texture = ExtResource("8_rf6l2")
+
+[node name="ParallaxLayer9" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1900, 0)
+
+[node name="1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer9"]
+texture = ExtResource("9_xwr85")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-1475, 0)
+motion_mode = 1
+script = ExtResource("10_k6rxp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_ab8pv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+z_index = 1
+scale = Vector2(5, 5)
+texture = ExtResource("10_syknw")
+hframes = 2
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_ouxl1")
+}
+script = ExtResource("11_0r7g2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("12_eyodn")
+
+[node name="Score" type="Label" parent="Player"]
+offset_left = -50.0
+offset_top = -86.0
+offset_right = -10.0
+offset_bottom = -44.0
+text = "0"
+label_settings = SubResource("LabelSettings_moc3h")
+
+[node name="ForwardRay" type="RayCast2D" parent="Player"]
+position = Vector2(32, -1)
+target_position = Vector2(800, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="TopRay" type="Line2D" parent="Player"]
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(1, 0.09, 0.09, 1)
+
+[node name="BottomRay" type="Line2D" parent="Player"]
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(1, 0.09, 0.09, 1)
+
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+z_index = 10
+position_smoothing_enabled = true
+script = ExtResource("14_tm5u4")
+
+[node name="currentGen" type="Label" parent="Camera"]
+visibility_layer = 512
+offset_left = -929.0
+offset_top = -509.0
+offset_right = -657.0
+offset_bottom = -454.0
+text = "Current Generation:"
+label_settings = SubResource("LabelSettings_uremc")
+
+[node name="GenLabel" type="Label" parent="Camera"]
+unique_name_in_owner = true
+visibility_layer = 512
+offset_left = -648.0
+offset_top = -507.0
+offset_right = -376.0
+offset_bottom = -452.0
+text = "0"
+label_settings = SubResource("LabelSettings_uremc")
+
+[node name="timescale" type="Label" parent="Camera"]
+visibility_layer = 512
+offset_left = -929.0
+offset_top = 470.0
+offset_right = -657.0
+offset_bottom = 525.0
+text = "TimeScale:"
+label_settings = SubResource("LabelSettings_uremc")
+
+[node name="TimeScale" type="Label" parent="Camera"]
+unique_name_in_owner = true
+visibility_layer = 512
+offset_left = -754.0
+offset_top = 470.0
+offset_right = -482.0
+offset_bottom = 525.0
+text = "1"
+label_settings = SubResource("LabelSettings_uremc")
+
+[node name="Obstacle" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-1188, -320)
+script = ExtResource("15_gi31p")
+
+[node name="top" type="Sprite2D" parent="Obstacle"]
+position = Vector2(0, 50)
+texture = ExtResource("15_hlseq")
+
+[node name="Wall" type="StaticBody2D" parent="Obstacle/top"]
+position = Vector2(8, -75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle/top/Wall"]
+position = Vector2(-29.5, -68.25)
+shape = SubResource("RectangleShape2D_rw5ol")
+
+[node name="bottom" type="Sprite2D" parent="Obstacle"]
+position = Vector2(-6, 603)
+texture = ExtResource("15_hlseq")
+flip_v = true
+
+[node name="Wall" type="StaticBody2D" parent="Obstacle/bottom"]
+position = Vector2(0, -50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle/bottom/Wall"]
+position = Vector2(-21.5, 212.5)
+shape = SubResource("RectangleShape2D_j0sx6")
+
+[node name="ScoreArea" type="Area2D" parent="Obstacle"]
+script = ExtResource("17_2hkou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle/ScoreArea"]
+position = Vector2(11, 324)
+shape = SubResource("SegmentShape2D_75bcf")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(0, -952)
+shape = SubResource("SegmentShape2D_61xep")
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(-67, -58)
+shape = SubResource("SegmentShape2D_61xep")
+
+[connection signal="body_entered" from="Obstacle/ScoreArea" to="." method="_on_player_scored"]
