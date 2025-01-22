@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cl0i65qjvsyn2" path="res://resources/imgs/background/7.png" id="7_0g5vq"]
 [ext_resource type="Texture2D" uid="uid://cpberigg01w3l" path="res://resources/imgs/background/8fx.png" id="8_rf6l2"]
 [ext_resource type="Texture2D" uid="uid://r1ha0ttgnpj7" path="res://resources/imgs/background/9.png" id="9_xwr85"]
-[ext_resource type="Script" path="res://CharacterBody2D.gd" id="10_k6rxp"]
+[ext_resource type="Script" path="res://BatControl.gd" id="10_k6rxp"]
 [ext_resource type="Texture2D" uid="uid://ca4g20x8pebs4" path="res://resources/imgs/bat/bat.png" id="10_syknw"]
 [ext_resource type="Script" path="res://AnimationPlayer.gd" id="11_0r7g2"]
 [ext_resource type="AudioStream" uid="uid://do62fofyioa6a" path="res://resources/snds/flap.wav" id="12_eyodn"]
